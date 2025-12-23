@@ -1,0 +1,16 @@
+from typing import List
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        def dfs(openP, closeP, path):
+            if openP == closeP and openP + closeP == n*2:
+                res.append(path)
+                return 
+            if openP<n:
+                dfs(openP+1, closeP, path+"(")
+            if closeP<openP:
+                dfs(openP, closeP+1, path+")")
+        dfs(0,0,"")
+
+        return res
